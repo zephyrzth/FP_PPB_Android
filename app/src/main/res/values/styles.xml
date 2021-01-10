@@ -17,4 +17,46 @@
         <item name="android:windowActionBarOverlay">true</item>
         <item name="windowActionBarOverlay">true</item>
     </style>
+
+    <!--
+      Font family: Public Sans
+      Line height: 38sp
+      (identical to box height)
+      translationY 4.9sp compensates for the line height adjustment of text
+    -->
+    <style name="masuk">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">#EE964B</item>
+    </style>
+
+    <!--
+      Font family: Public Sans
+      Line height: 16sp
+    -->
+    <!-- styles.xml -->
+    <style name="email">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#757373</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="password">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#757373</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <!--
+      Font family: Public Sans
+      Line height: 33sp
+    -->
+    <!-- styles.xml -->
+    <style name="belum_punya">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+
+
+
 </resources>

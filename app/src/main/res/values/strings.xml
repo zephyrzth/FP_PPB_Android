@@ -11,6 +11,12 @@
     <string name="nnapi">NNAPI</string>
     <string name="threads">Threads:</string>
 
+    <!--    bagian login-->
+    <string name="masuk">Masuk</string>
+    <string name="email">Masukkan email anda</string>
+    <string name="password">Masukkan password anda</string>
+    <string name="belum_punya">Belum punya akun? Daftar</string>
+
     <string name="model">Model:</string>
     <string name="device">Device:</string>
 
