@@ -5,12 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="top"
+        android:lineSpacingExtra="10sp"
+        android:text="Registrasi"
+        android:textAppearance="@style/masuk"/>
+
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
         android:orientation="vertical">
@@ -92,7 +104,7 @@
             android:id="@+id/map1"
             class="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="410dp"
             tools:context=".MapsActivity" />
 
     </RelativeLayout>
@@ -107,11 +119,15 @@
             android:id="@+id/btBatal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:backgroundTint="@color/red"
             android:text="Batal" />
         <Button
             android:id="@+id/btDaftar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="@color/orange"
             android:text="Daftar" />
     </LinearLayout>
 
