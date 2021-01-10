@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 switch (view.getId()){
                     case R.id.bDeteksi:
-                        Intent intent = new Intent(MainActivity.this, Classifier.class);
+                        Intent intent = new Intent(MainActivity.this, ClassifierActivity.class);
                         startActivity(intent);
                         break;
                 }
