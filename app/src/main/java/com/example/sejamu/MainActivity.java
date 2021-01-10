@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.sejamu.tflite.Classifier;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 switch (view.getId()){
                     case R.id.bDeteksi:
-                        Intent intent = new Intent(MainActivity.this, CameraActivity.class);
+                        Intent intent = new Intent(MainActivity.this, Classifier.class);
                         startActivity(intent);
                         break;
                 }
