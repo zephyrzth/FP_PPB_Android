@@ -92,7 +92,7 @@ public abstract class CameraActivity extends AppCompatActivity
   private Model model = Model.FLOAT;
   private Device device = Device.CPU;
   private int numThreads = -1;
-   MediaPlayer mp,mp1,mp2,mp3;
+   MediaPlayer mp;
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     LOGGER.d("onCreate " + this);
@@ -327,11 +327,6 @@ public abstract class CameraActivity extends AppCompatActivity
     handlerThread = new HandlerThread("inference");
     handlerThread.start();
     handler = new Handler(handlerThread.getLooper());
-
-    mp = MediaPlayer.create(this, R.raw.kunir);
-    mp1 = MediaPlayer.create(this, R.raw.jahe);
-    mp2 = MediaPlayer.create(this, R.raw.cabe);
-    mp3 = MediaPlayer.create(this, R.raw.pahitan);
   }
 
   @Override
@@ -352,6 +347,7 @@ public abstract class CameraActivity extends AppCompatActivity
 
   @Override
   public synchronized void onStop() {
+    stopPlaying();
     LOGGER.d("onStop " + this);
     super.onStop();
   }
@@ -514,6 +510,15 @@ public abstract class CameraActivity extends AppCompatActivity
   boolean jahe = false;
   boolean cabe = false;
   boolean pahitan = false;
+
+  private void stopPlaying() {
+    if (mp != null) {
+      mp.stop();
+      mp.release();
+      mp = null;
+    }
+  }
+
   @UiThread
   protected void showResultsInBottomSheet(List<Recognition> results) {
 
@@ -527,25 +532,31 @@ public abstract class CameraActivity extends AppCompatActivity
         float confi = 100 * recognition.getConfidence();
         try {
           if (!kunir && recognitionTextView.getText().toString().equalsIgnoreCase("Kunir") && confi>90 ) {
+            stopPlaying();
+            mp = MediaPlayer.create(this, R.raw.kunir);
             mp.start();
             kunir =true;
             jahe = false;
             cabe = false;
             pahitan = false;
           } else if (!jahe&& recognitionTextView.getText().toString().equalsIgnoreCase("Jahe")&& confi>90) {
-            mp1.start();
+            stopPlaying();
+            mp = MediaPlayer.create(this, R.raw.jahe);
+            mp.start();
             kunir =false;
             jahe = true;
             cabe = false;
             pahitan = false;
           } else if (!cabe&&recognitionTextView.getText().toString().equalsIgnoreCase("Cabe Puyang")&& confi>90 ) {
-            mp2.start();
+            mp = MediaPlayer.create(this, R.raw.cabe);
+            mp.start();
             kunir =false;
             jahe = false;
             cabe = true;
             pahitan = false;
           } else if (!pahitan&&recognitionTextView.getText().toString().equalsIgnoreCase("Pahitan")&& confi>90 ) {
-            mp3.start();
+            mp = MediaPlayer.create(this, R.raw.pahitan);
+            mp.start();
             kunir =false;
             jahe = false;
             cabe = false;
