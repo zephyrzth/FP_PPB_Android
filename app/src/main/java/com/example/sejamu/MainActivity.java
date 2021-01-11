@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.belanja:
                         break;
                     case R.id.profil:
+                        openFragment(ProfilFragment.newInstance("", ""));
                         break;
                 }
                 return true;
