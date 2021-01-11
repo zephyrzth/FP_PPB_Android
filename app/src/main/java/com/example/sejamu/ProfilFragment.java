@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,4 +67,18 @@ public class ProfilFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_profil, container, false);
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ImageButton location = view.findViewById(R.id.btLocation);
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (view.getId() == R.id.btLocation) {
+                    Intent intent = new Intent(getActivity(), MapsActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+    }
 }
