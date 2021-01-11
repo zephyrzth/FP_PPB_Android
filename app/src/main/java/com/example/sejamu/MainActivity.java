@@ -1,10 +1,12 @@
 package com.example.sejamu;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -46,5 +48,27 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(R.string.app_name);
+        builder.setIcon(R.mipmap.sejamu_icon);
+        builder.setMessage("Apakah Anda yakin ingin keluar dari aplikasi?")
+                .setCancelable(false)
+                .setPositiveButton("Iya", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
