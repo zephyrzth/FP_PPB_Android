@@ -15,6 +15,8 @@ import com.example.sejamu.tflite.Classifier;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String DEBUG_TAG = "DEBUG_TAG";
+
     private BottomNavigationView menu_bawah;
 
     @Override
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
                         openFragment(DeteksiFragment.newInstance("", ""));
                         break;
                     case R.id.belanja:
+                        openFragment(BelanjaFragment.newInstance(2));
                         break;
                     case R.id.profil:
                         break;
