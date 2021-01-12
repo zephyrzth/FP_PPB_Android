@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="10dp">
+    
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        android:layout_width="175dp"
+        android:layout_height="260dp"
+        android:layout_gravity="center"
+        card_view:cardCornerRadius="5dp"
+        card_view:cardElevation="0dp"
+        card_view:cardMaxElevation="10dp"
+        card_view:contentPadding="0dp"
+        card_view:strokeColor="#4DB1A2A2"
+        card_view:strokeWidth="1dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/ivItem"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_centerHorizontal="true"
+                android:scaleType="fitXY" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ivItem"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <TextView
+                    android:id="@+id/tvJudul"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="Jamu"/>
+
+                <TextView
+                    android:id="@+id/tvHarga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/judulTextView"
+                    android:textColor="#C78523"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    android:text="Harga"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
