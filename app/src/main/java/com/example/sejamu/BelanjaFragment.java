@@ -92,7 +92,7 @@ public class BelanjaFragment extends Fragment {
                 if (response.isSuccessful()) {
                     GetItem listResult = response.body();
 
-                    Log.d(MainActivity.DEBUG_TAG, listResult.getListDataItem().get(0).getPath());
+//                    Log.d(MainActivity.DEBUG_TAG, listResult.getListDataItem().get(0).getPath());
 
                     MyItemRecyclerViewAdapter itemAdapter = new MyItemRecyclerViewAdapter(getActivity(),
                             listResult.getListDataItem());

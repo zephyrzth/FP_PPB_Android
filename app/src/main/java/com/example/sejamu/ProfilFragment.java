@@ -64,10 +64,12 @@ public class ProfilFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (UserItem.MY_TOKEN != null && !UserItem.MY_TOKEN.isEmpty()) {
+        if (UserItem.MY_TOKEN == null || UserItem.MY_TOKEN.isEmpty()) {
+            Log.d(MainActivity.DEBUG_TAG, "Tidak punya token");
             Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivity(intent);
         } else {
+            Log.d(MainActivity.DEBUG_TAG, "Punya token");
             if (getArguments() != null) {
                 mParam1 = getArguments().getString(ARG_PARAM1);
                 mParam2 = getArguments().getString(ARG_PARAM2);
