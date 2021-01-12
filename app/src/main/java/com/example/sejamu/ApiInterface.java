@@ -22,5 +22,12 @@ public interface ApiInterface {
                                    @Field("harga") int harga,
                                    @Field("filename") String filename,
                                    @Field("photofile") String photofile);
+
+    @FormUrlEncoded
+    @POST("login")
+    Call<PostPutDelItem> storeItem(@Field("email") String email,
+                                   @Field("nama") String nama,
+                                   @Field("password") String password,
+                                   @Field("token") String token);
 }
 
