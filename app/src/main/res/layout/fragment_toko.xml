@@ -51,7 +51,7 @@
                     android:id="@+id/tvHarga"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/judulTextView"
+                    android:layout_below="@+id/tvJudul"
                     android:textColor="#C78523"
                     android:layout_marginTop="5dp"
                     android:textSize="14sp"
