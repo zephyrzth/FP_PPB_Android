@@ -4,17 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginTop="20dp">
+    android:layout_marginTop="10dp">
     
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
-        android:layout_width="170dp"
-        android:layout_height="300dp"
-        card_view:cardCornerRadius="15dp"
-        card_view:cardElevation="10dp"
+        android:layout_width="175dp"
+        android:layout_height="260dp"
+        android:layout_gravity="center"
+        card_view:cardCornerRadius="5dp"
+        card_view:cardElevation="0dp"
         card_view:cardMaxElevation="10dp"
-        card_view:contentPadding="10dp"
-        card_view:strokeColor="#B1A2A2"
+        card_view:contentPadding="0dp"
+        card_view:strokeColor="#4DB1A2A2"
         card_view:strokeWidth="1dp">
 
         <RelativeLayout
@@ -26,28 +27,38 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:padding="5dp" />
+                android:layout_height="170dp"
+                android:layout_centerHorizontal="true"
+                android:scaleType="fitXY" />
 
-            <TextView
-                android:id="@+id/judulTextView"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/imageView"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:text="Jamu"/>
+                android:layout_below="@id/imageView"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
 
-            <TextView
-                android:id="@+id/hargaTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/judulTextView"
-                android:textColor="#C78523"
-                android:textSize="14sp"
-                android:textStyle="italic"
-                android:text="Harga"/>
+                <TextView
+                    android:id="@+id/judulTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="Jamu"/>
+
+                <TextView
+                    android:id="@+id/hargaTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/judulTextView"
+                    android:textColor="#C78523"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    android:text="Harga"/>
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
