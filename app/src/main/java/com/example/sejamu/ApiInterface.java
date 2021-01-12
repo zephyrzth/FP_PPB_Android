@@ -34,5 +34,12 @@ public interface ApiInterface {
 
     @POST("whoami")
     Call<PostPutDelUser> whoami(@Header("Authorization") String authHeader);
+
+    @FormUrlEncoded
+    @POST("register")
+    Call<PostPutDelUser> register(@Field("name") String name,
+                                  @Field("email") String password,
+                                  @Field("latitude") String latitude,
+                                  @Field("longitude") String longitude);
 }
 
