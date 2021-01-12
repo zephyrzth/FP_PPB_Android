@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class UserItem {
 
+    public static String MY_TOKEN;
+
     @SerializedName("id")
     private int id;
     @SerializedName("email")
@@ -13,7 +15,7 @@ public class UserItem {
     @SerializedName("password")
     private String password;
     @SerializedName("token")
-    public static String MYTOKEN;
+    private String token;
 
     public UserItem() { }
 
@@ -33,6 +35,10 @@ public class UserItem {
         this.password = password;
     }
 
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public int getId() {
         return id;
     }
@@ -47,5 +53,9 @@ public class UserItem {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getToken() {
+        return token;
     }
 }

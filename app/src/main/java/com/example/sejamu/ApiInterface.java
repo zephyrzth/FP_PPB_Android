@@ -25,9 +25,11 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("login")
-    Call<PostPutDelItem> storeItem(@Field("email") String email,
-                                   @Field("nama") String nama,
-                                   @Field("password") String password,
-                                   @Field("token") String token);
+    Call<PostPutDelUser> login(@Field("email") String email,
+                               @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("whoami")
+    Call<PostPutDelUser> whoami(@Field("token") String token);
 }
 

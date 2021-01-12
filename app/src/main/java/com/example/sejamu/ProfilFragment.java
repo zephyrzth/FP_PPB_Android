@@ -7,11 +7,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
+import org.json.JSONObject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +36,8 @@ public class ProfilFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private ApiInterface mApiInterface;
 
     public ProfilFragment() {
         // Required empty public constructor
@@ -54,9 +64,43 @@ public class ProfilFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+        if (UserItem.MY_TOKEN != null && !UserItem.MY_TOKEN.isEmpty()) {
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+        } else {
+            if (getArguments() != null) {
+                mParam1 = getArguments().getString(ARG_PARAM1);
+                mParam2 = getArguments().getString(ARG_PARAM2);
+            }
+
+            mApiInterface = ApiClient.getClient().create(ApiInterface.class);
+            Call<PostPutDelUser> postUserCall = mApiInterface.whoami(UserItem.MY_TOKEN);
+            postUserCall.enqueue(new Callback<PostPutDelUser>() {
+                @Override
+                public void onResponse(Call<PostPutDelUser> call, Response<PostPutDelUser> response) {
+                    if (response.isSuccessful()) {
+                        PostPutDelUser result = response.body();
+                        Log.d(MainActivity.DEBUG_TAG, result.getDataItem().getNama());
+                    } else {
+                        try {
+                            String responseBodyString = response.errorBody().string();
+                            Log.d(MainActivity.DEBUG_TAG, responseBodyString);
+                            JSONObject jsonObject = new JSONObject(responseBodyString);
+
+                            Toast.makeText(getActivity(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                        } catch (Exception e) {
+                            Log.d(MainActivity.DEBUG_TAG, "Error Body JSON: " + e.getMessage());
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<PostPutDelUser> call, Throwable t) {
+                    Toast.makeText(getActivity(), "Terjadi kesalahan", Toast.LENGTH_LONG).show();
+                    Log.d(MainActivity.DEBUG_TAG, "Error ProfilFragment: " + t.getMessage());
+                }
+            });
+
         }
     }
 

@@ -6,7 +6,7 @@ public class PostPutDelUser {
     @SerializedName("status")
     String status;
     @SerializedName("data")
-    DataItem dataUser;
+    UserItem dataUser;
     @SerializedName("message")
     String message;
 
@@ -14,7 +14,7 @@ public class PostPutDelUser {
         this.status = status;
     }
 
-    public void setDataItem(DataItem dataItem) {
+    public void setDataItem(UserItem dataItem) {
         this.dataUser = dataUser;
     }
 
@@ -26,7 +26,7 @@ public class PostPutDelUser {
         return status;
     }
 
-    public DataItem getDataItem() {
+    public UserItem getDataItem() {
         return dataUser;
     }
 
