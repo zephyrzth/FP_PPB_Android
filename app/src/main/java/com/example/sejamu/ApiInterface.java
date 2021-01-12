@@ -5,6 +5,7 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -12,6 +13,9 @@ import retrofit2.http.Path;
 public interface ApiInterface {
     @GET("list")
     Call<GetItem> listItem();
+
+    @GET("list_toko/{id}")
+    Call<GetItem> listToko(@Path("id") int userId);
 
     @GET("show/{id}")
     Call<PostPutDelItem> showItem(@Path("id") int id);
@@ -28,8 +32,7 @@ public interface ApiInterface {
     Call<PostPutDelUser> login(@Field("email") String email,
                                @Field("password") String password);
 
-    @FormUrlEncoded
     @POST("whoami")
-    Call<PostPutDelUser> whoami(@Field("token") String token);
+    Call<PostPutDelUser> whoami(@Header("Authorization") String authHeader);
 }
 

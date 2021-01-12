@@ -74,35 +74,6 @@ public class ProfilFragment extends Fragment {
                 mParam1 = getArguments().getString(ARG_PARAM1);
                 mParam2 = getArguments().getString(ARG_PARAM2);
             }
-
-            mApiInterface = ApiClient.getClient().create(ApiInterface.class);
-            Call<PostPutDelUser> postUserCall = mApiInterface.whoami(UserItem.MY_TOKEN);
-            postUserCall.enqueue(new Callback<PostPutDelUser>() {
-                @Override
-                public void onResponse(Call<PostPutDelUser> call, Response<PostPutDelUser> response) {
-                    if (response.isSuccessful()) {
-                        PostPutDelUser result = response.body();
-                        Log.d(MainActivity.DEBUG_TAG, result.getDataItem().getNama());
-                    } else {
-                        try {
-                            String responseBodyString = response.errorBody().string();
-                            Log.d(MainActivity.DEBUG_TAG, responseBodyString);
-                            JSONObject jsonObject = new JSONObject(responseBodyString);
-
-                            Toast.makeText(getActivity(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
-                        } catch (Exception e) {
-                            Log.d(MainActivity.DEBUG_TAG, "Error Body JSON: " + e.getMessage());
-                        }
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<PostPutDelUser> call, Throwable t) {
-                    Toast.makeText(getActivity(), "Terjadi kesalahan", Toast.LENGTH_LONG).show();
-                    Log.d(MainActivity.DEBUG_TAG, "Error ProfilFragment: " + t.getMessage());
-                }
-            });
-
         }
     }
 
@@ -126,5 +97,85 @@ public class ProfilFragment extends Fragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            // Refresh your fragment here
+            getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+            Log.i("IsRefresh", "Yes");
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (UserItem.MY_TOKEN != null && !UserItem.MY_TOKEN.isEmpty()) {
+            mApiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+            Call<PostPutDelUser> postUserCall = mApiInterface.whoami("Bearer " + UserItem.MY_TOKEN);
+            postUserCall.enqueue(new Callback<PostPutDelUser>() {
+                @Override
+                public void onResponse(Call<PostPutDelUser> call, Response<PostPutDelUser> response) {
+                    if (response.isSuccessful()) {
+                        PostPutDelUser result = response.body();
+                        UserItem user = new UserItem(result.getDataItem().getId());
+                        user.setEmail(result.getDataItem().getEmail());
+                        user.setNama(result.getDataItem().getNama());
+                        Log.d(MainActivity.DEBUG_TAG, "result " + result.getDataItem().getNama());
+                    } else {
+                        try {
+                            String responseBodyString = response.errorBody().string();
+                            Log.d(MainActivity.DEBUG_TAG, responseBodyString);
+                            JSONObject jsonObject = new JSONObject(responseBodyString);
+
+                            Toast.makeText(getActivity(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                        } catch (Exception e) {
+                            Log.d(MainActivity.DEBUG_TAG, "Error Body JSON: " + e.getMessage());
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<PostPutDelUser> call, Throwable t) {
+                    Toast.makeText(getActivity(), "Terjadi kesalahan", Toast.LENGTH_LONG).show();
+                    Log.d(MainActivity.DEBUG_TAG, "Error ProfilFragment: " + t.getMessage());
+                }
+            });
+
+            Call<GetItem> getItemCall = mApiInterface.listToko(UserItem.MY_ID);
+            getItemCall.enqueue(new Callback<GetItem>() {
+                @Override
+                public void onResponse(Call<GetItem> call, Response<GetItem> response) {
+                    if (response.isSuccessful()) {
+                        GetItem listResult = response.body();
+
+                        Log.d(MainActivity.DEBUG_TAG, listResult.getListDataItem().get(0).getPath());
+
+//                        MyItemRecyclerViewAdapter itemAdapter = new MyItemRecyclerViewAdapter(getActivity(),
+//                                listResult.getListDataItem());
+//                        recyclerView.setAdapter(itemAdapter);
+                    } else {
+                        try {
+                            String responseBodyString = response.errorBody().string();
+                            Log.d(MainActivity.DEBUG_TAG, responseBodyString);
+                            JSONObject jsonObject = new JSONObject(responseBodyString);
+
+                            Toast.makeText(getActivity(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                        } catch (Exception e) {
+                            Log.d(MainActivity.DEBUG_TAG, "Error Body JSON: " + e.getMessage());
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<GetItem> call, Throwable t) {
+                    Toast.makeText(getActivity(), "Terjadi kesalahan", Toast.LENGTH_LONG).show();
+                    Log.d(MainActivity.DEBUG_TAG, "Error Retrofit List: " + t.getMessage());
+                }
+            });
+        }
     }
 }

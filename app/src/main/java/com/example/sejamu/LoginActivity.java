@@ -97,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                         PostPutDelUser result = response.body();
 
                         UserItem.MY_TOKEN = result.dataUser.getToken();
+                        UserItem.MY_ID = result.dataUser.getId();
                         finish();
                         Log.d(MainActivity.DEBUG_TAG, result.getDataItem().getToken());
                     } else {
