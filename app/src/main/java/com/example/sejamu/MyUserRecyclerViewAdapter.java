@@ -28,7 +28,7 @@ public class MyUserRecyclerViewAdapter extends RecyclerView.Adapter<MyUserRecycl
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_profil, parent, false);
+                .inflate(R.layout.fragment_toko, parent, false);
         return new ViewHolder(view);
     }
 

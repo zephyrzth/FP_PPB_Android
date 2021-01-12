@@ -64,18 +64,6 @@ public class BelanjaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_belanja_list, container, false);
-
-        // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-//            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(DummyContent.ITEMS));
-        }
         return view;
     }
 
@@ -84,6 +72,7 @@ public class BelanjaFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), mColumnCount));
 
         Call<GetItem> getPhotoCall = mApiInterface.listItem();
         getPhotoCall.enqueue(new Callback<GetItem>() {

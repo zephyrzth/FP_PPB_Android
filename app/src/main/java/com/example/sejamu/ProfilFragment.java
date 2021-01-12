@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONObject;
@@ -36,6 +39,9 @@ public class ProfilFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private TextView tvNamaUser;
+    private RecyclerView recyclerView;
 
     private ApiInterface mApiInterface;
 
@@ -88,6 +94,8 @@ public class ProfilFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ImageButton location = view.findViewById(R.id.btLocation);
+        tvNamaUser = (TextView) view.findViewById(R.id.tvNamaUser);
+        recyclerView = (RecyclerView) view.findViewById(R.id.tokoList);
         location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,6 +133,7 @@ public class ProfilFragment extends Fragment {
                         user.setEmail(result.getDataItem().getEmail());
                         user.setNama(result.getDataItem().getNama());
                         Log.d(MainActivity.DEBUG_TAG, "result " + result.getDataItem().getNama());
+                        tvNamaUser.setText(user.getNama());
                     } else {
                         try {
                             String responseBodyString = response.errorBody().string();
@@ -154,9 +163,9 @@ public class ProfilFragment extends Fragment {
 
                         Log.d(MainActivity.DEBUG_TAG, listResult.getListDataItem().get(0).getPath());
 
-//                        MyItemRecyclerViewAdapter itemAdapter = new MyItemRecyclerViewAdapter(getActivity(),
-//                                listResult.getListDataItem());
-//                        recyclerView.setAdapter(itemAdapter);
+                        MyUserRecyclerViewAdapter itemAdapter = new MyUserRecyclerViewAdapter(getActivity(),
+                                listResult.getListDataItem());
+                        recyclerView.setAdapter(itemAdapter);
                     } else {
                         try {
                             String responseBodyString = response.errorBody().string();
