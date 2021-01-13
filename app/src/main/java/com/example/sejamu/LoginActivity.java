@@ -9,6 +9,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import org.json.JSONObject;
@@ -20,7 +21,8 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
     EditText etEmail, etPassword;
-    Button btnLogin;
+    Button btnLogin, btnDaftar;
+    ImageButton btnClose;
     final int MIN_PASSWORD_LENGTH = 6;
     private ApiInterface mApiInterface;
 
@@ -40,12 +42,28 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                performSignUp();
+                performSignIn();
+            }
+        });
+
+        btnDaftar = (Button) findViewById(R.id.btDaftar);
+        btnDaftar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToSignIn();
+            }
+        });
+
+        btnClose = (ImageButton) findViewById(R.id.btClose);
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
         // To show back button in actionbar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     // Checking if the input in form is valid
@@ -81,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // Hook Click Event
 
-    public void performSignUp () {
+    public void performSignIn () {
         if (validateInput()) {
             // Input is valid, here send data to your server
 
@@ -123,10 +141,15 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-//    public void goToSignup(View v) {
-//        // Open your SignUp Activity if the user wants to signup
-//        // Visit this article to get SignupActivity code https://handyopinion.com/signup-activity-in-android-studio-kotlin-java/
-//        Intent intent = new Intent(this, SignupActivity.class);
+    public void goToSignIn() {
+        // Open your SignUp Activity if the user wants to signup
+        // Visit this article to get SignupActivity code https://handyopinion.com/signup-activity-in-android-studio-kotlin-java/
+        Intent intent = new Intent(this, RegistrationActivity.class);
+        startActivity(intent);
+    }
+
+//    public void goBack() {
+//        Intent intent = new Intent(this, MainActivity.class);
 //        startActivity(intent);
 //    }
 }

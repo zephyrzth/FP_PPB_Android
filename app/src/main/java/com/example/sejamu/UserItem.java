@@ -17,6 +17,10 @@ public class UserItem {
     private String password;
     @SerializedName("token")
     private String token;
+    @SerializedName("latitude")
+    private String latitude;
+    @SerializedName("longitude")
+    private String longitude;
 
     public UserItem() { }
 
@@ -40,6 +44,10 @@ public class UserItem {
         this.token = token;
     }
 
+    public void setLatitude(String latitude) { this.latitude = latitude; }
+
+    public void setLongitude(String longitude) { this.longitude = longitude; }
+
     public int getId() {
         return id;
     }
@@ -55,6 +63,10 @@ public class UserItem {
     public String getPassword() {
         return password;
     }
+
+    public String getLatitude() { return latitude; }
+
+    public String getLongitude() { return longitude; }
 
     public String getToken() {
         return token;
