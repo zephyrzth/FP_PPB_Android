@@ -38,7 +38,8 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("register")
     Call<PostPutDelUser> register(@Field("name") String name,
-                                  @Field("email") String password,
+                                  @Field("email") String email,
+                                  @Field("password") String password,
                                   @Field("latitude") String latitude,
                                   @Field("longitude") String longitude);
 }

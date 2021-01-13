@@ -30,7 +30,7 @@ import retrofit2.Response;
 public class RegistrationActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    EditText etNama, etEmail, etAlamat;
+    EditText etNama, etEmail, etAlamat, etPassword;
     TextView tvLatitude, tvLongitude;
     Button btnCari, btnDaftar, btnBatal;
 
@@ -48,6 +48,7 @@ public class RegistrationActivity extends AppCompatActivity implements OnMapRead
         etNama = (EditText) findViewById(R.id.etNama);
         etEmail = (EditText) findViewById(R.id.etEmail);
         etAlamat = (EditText) findViewById(R.id.etAlamat);
+        etPassword = (EditText) findViewById(R.id.etPasswordRegister);
         tvLatitude = (TextView) findViewById(R.id.tvLatitude);
         tvLongitude = (TextView) findViewById(R.id.tvLongitude);
         btnCari = (Button) findViewById(R.id.btnCari);
@@ -118,12 +119,13 @@ public class RegistrationActivity extends AppCompatActivity implements OnMapRead
 
         String name = etNama.getText().toString();
         String email = etEmail.getText().toString();
+        String password = etPassword.getText().toString();
         String alamat = etAlamat.getText().toString();
         String latitude = tvLatitude.getText().toString();
         String longitude = tvLongitude.getText().toString();
 
         // Here you can call you API
-        Call<PostPutDelUser> postUserCall = mApiInterface.register(name, email, latitude, longitude);
+        Call<PostPutDelUser> postUserCall = mApiInterface.register(name, email, password, latitude, longitude);
         postUserCall.enqueue(new Callback<PostPutDelUser>() {
             @Override
             public void onResponse(Call<PostPutDelUser> call, Response<PostPutDelUser> response) {
