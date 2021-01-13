@@ -20,12 +20,12 @@
         android:id="@+id/btDaftar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp"
+        android:layout_marginBottom="28dp"
         android:text="Daftar"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.817"
+        app:layout_constraintHorizontal_bias="0.828"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -42,13 +42,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.6" />
 
     <ImageView
         android:id="@+id/my_profile_orange"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="68dp"
         android:src="@drawable/my_profile_orange"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -83,14 +83,14 @@
         android:background="@drawable/rectangle_abu"
         android:gravity="center"
         android:hint="@string/password"
+        android:inputType="textPassword"
         android:textAppearance="@style/password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etEmail"
-        app:layout_constraintVertical_bias="0.067"
-        android:inputType="textPassword" />
+        app:layout_constraintVertical_bias="0.03" />
 
     <Button
         android:id="@+id/btMasuk"
@@ -102,7 +102,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPassword"
-        app:layout_constraintVertical_bias="0.291" />
+        app:layout_constraintVertical_bias="0.085" />
 
     <ImageView
         android:layout_width="62dp"
@@ -115,7 +115,7 @@
         app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btMasuk"
-        app:layout_constraintVertical_bias="0.243" />
+        app:layout_constraintVertical_bias="0.04" />
 
     <ImageView
         android:layout_width="62dp"
@@ -128,7 +128,7 @@
         app:layout_constraintHorizontal_bias="0.415"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btMasuk"
-        app:layout_constraintVertical_bias="0.364" />
+        app:layout_constraintVertical_bias="0.092" />
 
     <TextView
         android:id="@+id/belum_punya"
@@ -136,7 +136,7 @@
         android:layout_height="28dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="36dp"
         android:gravity="top"
         android:text="@string/belum_punya"
         android:textAppearance="@style/belum_punya"
