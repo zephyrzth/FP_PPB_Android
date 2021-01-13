@@ -84,7 +84,7 @@
                 android:layout_weight="1"
                 android:hint="Latitude"
                 android:textAlignment="center"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -94,7 +94,7 @@
                 android:layout_weight="1"
                 android:hint="Longitude"
                 android:textAlignment="center"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -111,7 +111,7 @@
             android:id="@+id/map1"
             class="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="410dp"
+            android:layout_height="400dp"
             tools:context=".MapsActivity" />
 
         <ImageView
