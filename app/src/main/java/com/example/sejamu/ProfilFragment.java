@@ -105,16 +105,14 @@ public class ProfilFragment extends Fragment {
                 }
             }
         });
-    }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-            // Refresh your fragment here
-            getFragmentManager().beginTransaction().detach(this).attach(this).commit();
-            Log.i("IsRefresh", "Yes");
-        }
+        Button btTambahProfil = (Button) view.findViewById(R.id.btTambahProfil);
+        btTambahProfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AddItemActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

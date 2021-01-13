@@ -63,7 +63,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="36dp"
         android:background="@drawable/rectangle_abu"
-        android:gravity="top"
+        android:gravity="center"
         android:hint="@string/email"
         android:textAppearance="@style/email"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,7 +71,8 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_profile_orange"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:inputType="text"/>
 
     <EditText
         android:id="@+id/etPassword"
@@ -80,7 +81,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/rectangle_abu"
-        android:gravity="top"
+        android:gravity="center"
         android:hint="@string/password"
         android:textAppearance="@style/password"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -88,7 +89,8 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etEmail"
-        app:layout_constraintVertical_bias="0.067" />
+        app:layout_constraintVertical_bias="0.067"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/btMasuk"
