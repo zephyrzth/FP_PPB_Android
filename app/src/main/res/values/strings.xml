@@ -17,6 +17,13 @@
     <string name="password">Masukkan password anda</string>
     <string name="belum_punya">Belum punya akun?</string>
 
+    <!--    bagian add item-->
+    <string name="tambah">Tambah Item</string>
+    <string name="kamera">Ambil Gambar</string>
+    <string name="judul">Judul Item</string>
+    <string name="harga">Harga Item</string>
+    <string name="simpan">Simpan</string>
+
     <string name="model">Model:</string>
     <string name="device">Device:</string>
 

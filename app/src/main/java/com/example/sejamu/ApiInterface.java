@@ -22,7 +22,8 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("store")
-    Call<PostPutDelItem> storeItem(@Field("judul") String judul,
+    Call<PostPutDelItem> storeItem(@Header("Authorization") String authHeader,
+                                   @Field("judul") String judul,
                                    @Field("harga") int harga,
                                    @Field("filename") String filename,
                                    @Field("photofile") String photofile);
