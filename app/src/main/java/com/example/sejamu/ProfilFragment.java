@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -70,16 +71,9 @@ public class ProfilFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (UserItem.MY_TOKEN == null || UserItem.MY_TOKEN.isEmpty()) {
-            Log.d(MainActivity.DEBUG_TAG, "Tidak punya token");
-            Intent intent = new Intent(getActivity(), LoginActivity.class);
-            startActivity(intent);
-        } else {
-            Log.d(MainActivity.DEBUG_TAG, "Punya token");
-            if (getArguments() != null) {
-                mParam1 = getArguments().getString(ARG_PARAM1);
-                mParam2 = getArguments().getString(ARG_PARAM2);
-            }
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -159,7 +153,7 @@ public class ProfilFragment extends Fragment {
                     if (response.isSuccessful()) {
                         GetItem listResult = response.body();
 
-                        Log.d(MainActivity.DEBUG_TAG, listResult.getListDataItem().get(0).getPath());
+//                        Log.d(MainActivity.DEBUG_TAG, listResult.getListDataItem().get(0).getPath());
 
                         MyUserRecyclerViewAdapter itemAdapter = new MyUserRecyclerViewAdapter(getActivity(),
                                 listResult.getListDataItem());
@@ -183,6 +177,13 @@ public class ProfilFragment extends Fragment {
                     Log.d(MainActivity.DEBUG_TAG, "Error Retrofit List: " + t.getMessage());
                 }
             });
+        } else {
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.container, DeteksiFragment.newInstance("", ""));
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
     }
 }

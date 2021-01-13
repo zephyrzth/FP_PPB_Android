@@ -45,15 +45,17 @@ public class RegistrationActivity extends AppCompatActivity implements OnMapRead
                 .findFragmentById(R.id.map1);
         mapFragment.getMapAsync(this);
 
-        etNama = (EditText) findViewById(R.id.etNama);
-        etEmail = (EditText) findViewById(R.id.etEmail);
-        etAlamat = (EditText) findViewById(R.id.etAlamat);
+        mApiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+        etNama = (EditText) findViewById(R.id.etNamaRegister);
+        etEmail = (EditText) findViewById(R.id.etEmailRegister);
+        etAlamat = (EditText) findViewById(R.id.etAlamatRegister);
         etPassword = (EditText) findViewById(R.id.etPasswordRegister);
-        tvLatitude = (TextView) findViewById(R.id.tvLatitude);
-        tvLongitude = (TextView) findViewById(R.id.tvLongitude);
-        btnCari = (Button) findViewById(R.id.btnCari);
-        btnDaftar = (Button) findViewById(R.id.btDaftar);
-        btnBatal = (Button) findViewById(R.id.btBatal);
+        tvLatitude = (TextView) findViewById(R.id.tvLatitudeRegister);
+        tvLongitude = (TextView) findViewById(R.id.tvLongitudeRegister);
+        btnCari = (Button) findViewById(R.id.btnCariRegister);
+        btnDaftar = (Button) findViewById(R.id.btDaftarRegister);
+        btnBatal = (Button) findViewById(R.id.btBatalRegister);
 
         btnCari.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,8 +93,6 @@ public class RegistrationActivity extends AppCompatActivity implements OnMapRead
                 goToSignUp();
             }
         });
-
-
     }
 
     @Override
@@ -107,22 +107,19 @@ public class RegistrationActivity extends AppCompatActivity implements OnMapRead
             @Override
             public void onCameraMove() {
                 LatLng latLng = googleMap.getCameraPosition().target;
-                final TextView tvLatitude = (TextView) findViewById(R.id.tvLatitude);
-                final TextView tvLongitude = (TextView) findViewById(R.id.tvLongitude);
                 tvLatitude.setText(String.valueOf(latLng.latitude));
                 tvLongitude.setText(String.valueOf(latLng.longitude));
             }
         });
     }
 
-    public void performSignUp() {
-
+    private void performSignUp() {
         String name = etNama.getText().toString();
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
-        String alamat = etAlamat.getText().toString();
-        String latitude = tvLatitude.getText().toString();
-        String longitude = tvLongitude.getText().toString();
+        Log.d(MainActivity.DEBUG_TAG, "Latlong " + tvLatitude.getText().toString());
+        double latitude = Double.parseDouble(tvLatitude.getText().toString());
+        double longitude = Double.parseDouble(tvLongitude.getText().toString());
 
         // Here you can call you API
         Call<PostPutDelUser> postUserCall = mApiInterface.register(name, email, password, latitude, longitude);
@@ -130,10 +127,13 @@ public class RegistrationActivity extends AppCompatActivity implements OnMapRead
             @Override
             public void onResponse(Call<PostPutDelUser> call, Response<PostPutDelUser> response) {
                 if (response.isSuccessful()) {
+                    Log.d(MainActivity.DEBUG_TAG, "RegActivity berhasil");
                     PostPutDelUser result = response.body();
                     Toast.makeText(RegistrationActivity.this, "Berhasil", Toast.LENGTH_SHORT).show();
+                    finish();
 
                 } else {
+                    Log.d(MainActivity.DEBUG_TAG, "RegActivity gagal");
                     try {
                         String responseBodyString = response.errorBody().string();
                         Log.d(MainActivity.DEBUG_TAG, responseBodyString);
@@ -158,7 +158,8 @@ public class RegistrationActivity extends AppCompatActivity implements OnMapRead
     public void goToSignUp() {
         // Open your SignUp Activity if the user wants to signup
         // Visit this article to get SignupActivity code https://handyopinion.com/signup-activity-in-android-studio-kotlin-java/
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, LoginActivity.class);
+//        startActivity(intent);
+        finish();
     }
 }

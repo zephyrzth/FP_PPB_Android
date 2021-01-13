@@ -41,7 +41,7 @@ public interface ApiInterface {
     Call<PostPutDelUser> register(@Field("name") String name,
                                   @Field("email") String email,
                                   @Field("password") String password,
-                                  @Field("latitude") String latitude,
-                                  @Field("longitude") String longitude);
+                                  @Field("latitude") double latitude,
+                                  @Field("longitude") double longitude);
 }
 

@@ -18,9 +18,9 @@ public class UserItem {
     @SerializedName("token")
     private String token;
     @SerializedName("latitude")
-    private String latitude;
+    private double latitude;
     @SerializedName("longitude")
-    private String longitude;
+    private double longitude;
 
     public UserItem() { }
 
@@ -44,9 +44,9 @@ public class UserItem {
         this.token = token;
     }
 
-    public void setLatitude(String latitude) { this.latitude = latitude; }
+    public void setLatitude(double latitude) { this.latitude = latitude; }
 
-    public void setLongitude(String longitude) { this.longitude = longitude; }
+    public void setLongitude(double longitude) { this.longitude = longitude; }
 
     public int getId() {
         return id;
@@ -64,9 +64,9 @@ public class UserItem {
         return password;
     }
 
-    public String getLatitude() { return latitude; }
+    public double getLatitude() { return latitude; }
 
-    public String getLongitude() { return longitude; }
+    public double getLongitude() { return longitude; }
 
     public String getToken() {
         return token;
