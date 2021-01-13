@@ -3,6 +3,7 @@ package com.example.sejamu;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -38,8 +39,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        LatLng toko = new LatLng(-7.289, 112.802);
-        mMap.addMarker(new MarkerOptions().position(toko).title("Disini Lokasi Toko"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(toko, 15));
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            Log.d(MainActivity.DEBUG_TAG, "MapsActivity: " + extras.getDouble("latitude") + " " + extras.getDouble("longitude"));
+            LatLng toko = new LatLng(extras.getDouble("latitude"), extras.getDouble("longitude"));
+            mMap.addMarker(new MarkerOptions().position(toko).title("Lokasi toko di sini"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(toko, 15));
+        } else {
+            LatLng toko = new LatLng(-7.289, 112.802);
+            mMap.addMarker(new MarkerOptions().position(toko).title("Latlong ITS"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(toko, 15));
+        }
     }
 }

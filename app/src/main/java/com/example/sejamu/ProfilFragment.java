@@ -46,6 +46,8 @@ public class ProfilFragment extends Fragment {
 
     private ApiInterface mApiInterface;
 
+    private UserItem user;
+
     public ProfilFragment() {
         // Required empty public constructor
     }
@@ -93,8 +95,10 @@ public class ProfilFragment extends Fragment {
         location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (view.getId() == R.id.btLocation) {
+                if (user != null) {
                     Intent intent = new Intent(getActivity(), MapsActivity.class);
+                    intent.putExtra("latitude", user.getLatitude());
+                    intent.putExtra("longitude", user.getLongitude());
                     startActivity(intent);
                 }
             }
@@ -121,9 +125,11 @@ public class ProfilFragment extends Fragment {
                 public void onResponse(Call<PostPutDelUser> call, Response<PostPutDelUser> response) {
                     if (response.isSuccessful()) {
                         PostPutDelUser result = response.body();
-                        UserItem user = new UserItem(result.getDataItem().getId());
+                        user = new UserItem(result.getDataItem().getId());
                         user.setEmail(result.getDataItem().getEmail());
                         user.setNama(result.getDataItem().getNama());
+                        user.setLatitude(result.getDataItem().getLatitude());
+                        user.setLongitude(result.getDataItem().getLongitude());
                         Log.d(MainActivity.DEBUG_TAG, "result " + result.getDataItem().getNama());
                         tvNamaUser.setText(user.getNama());
                     } else {
