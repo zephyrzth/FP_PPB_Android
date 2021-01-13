@@ -11,8 +11,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/sejamu_icon"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Sejamu"
-        android:usesCleartextTraffic="true">
+        android:theme="@style/Theme.Sejamu">
+        <activity android:name=".RegistrationActivity" />
         <activity android:name=".AddItemActivity" />
         <activity android:name=".MapsActivity" />
         <activity android:name=".CameraActivity" />
